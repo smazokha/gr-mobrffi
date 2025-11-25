@@ -52,7 +52,7 @@ To run `gr-mobrffi`, you have the following requirements:
 
     * Then, install the GNUradio blocks: `sudo chmod +x ./gr-blocks/build.sh && ./build.sh`
 
-2. Launch the GNUradio via `gnuradio-companion` command, open the flowchart ![example.grc](./gr-blocks/examples/example.grc), and configure the parameters:
+2. Launch the GNUradio via `gnuradio-companion` command, open the flowchart [example.grc](./gr-blocks/examples/example.grc), and configure the parameters:
 
     * `threshold`: this is the value that is used to determine fingerprint distance (values above let us assume that the device is unknown, and values below are known / enrolled);
 
