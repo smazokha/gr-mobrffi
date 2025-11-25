@@ -44,7 +44,15 @@ To run `gr-mobrffi`, you have the following requirements:
 
     In case you're using the ~[tx.sh script](./alfa-tx/tx.sh), please note that all the Alfa sniffers were connected simultaneously to a Raspberry Pi with pre-configured interface aliases (e.g., alfa_01, alfa_02, etc). To initiate or stop probe request injection, the host connects, and launches a `tmux` session on Raspberry Pi via SSH. 
 
-2. Launch the GNUradio flowchart ~[example.grc](./gr-blocks/examples/example.grc), and configure the parameters:
+2. Prepare the `conda` environment:
+
+    * First, create a conda environment with all the necessary packages: `conda env create -f ./gr-blocks/grmobrffi.yml --name grmobrffi`
+
+    * Activate the environment: `conda activate grmobrffi`
+
+    * Then, install the GNUradio blocks: `sudo chmod +x ./gr-blocks/build.sh && ./build.sh`
+
+2. Launch the GNUradio via `gnuradio-companion` command, open the flowchart ![example.grc](./gr-blocks/examples/example.grc), and configure the parameters:
 
     * `threshold`: this is the value that is used to determine fingerprint distance (values above let us assume that the device is unknown, and values below are known / enrolled);
 
