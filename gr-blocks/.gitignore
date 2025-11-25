@@ -1,11 +1,3 @@
-# Build artifacts
-build/
-lib/
-include/
-swig/
-python/
-cmake/
-
 # CMake related files
 CMakeCache.txt
 CMakeFiles/
