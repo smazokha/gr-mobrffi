@@ -1,0 +1,48 @@
+id: mobrffi_reid
+label: MobRFFI Re-Identifier
+category: '[mobrffi]'
+
+parameters:
+- id: embeddingLength
+  label: Embedding length
+  dtype: int
+  default: 768
+- id: chromaPath
+  label: Chroma persist directory (or DB path)
+  dtype: file_save
+  default: /tmp/mobrffi_chroma
+- id: collectionName
+  label: Collection name
+  dtype: string
+  default: mobrffi
+- id: cosineThreshold
+  label: Cosine distance threshold (≤ good match)
+  dtype: real
+  default: 0.10
+
+inputs:
+- domain: stream
+  dtype: float
+  vlen: ${embeddingLength}
+
+outputs:
+- domain: stream
+  dtype: int
+  vlen: 1
+
+templates:
+  imports: |-
+    from gnuradio import mobrffi
+  make: |-
+    mobrffi.reid(
+        embeddingLength=${embeddingLength},
+        chromaPath=${chromaPath},
+        collectionName=${collectionName},
+        cosineThreshold=${cosineThreshold},
+    )
+
+cpp_templates: { }
+
+documentation: Ingests embeddings produced from WiFI preambles, and tries to find similar embeddings in a local database. If a match is found -- a corresponding label is returned. Otherwise, a new device is enrolled, and a new label is generated (and also returned).
+
+file_format: 1

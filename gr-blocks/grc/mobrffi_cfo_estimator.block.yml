@@ -1,0 +1,43 @@
+id: mobrffi_cfo_estimator
+label: MobRFFI CFO Estimator
+category: '[mobrffi]'
+
+parameters:
+- id: vectorLength
+  label: Input vector length
+  dtype: int
+  default: 400
+- id: sampleRate
+  label: Sample rate (Hz)
+  dtype: real
+  default: 25000000
+- id: lag
+  label: Phase-diff lag (samples)
+  dtype: int
+  default: 16
+
+inputs:
+- domain: stream
+  dtype: complex
+  vlen: ${vectorLength}
+
+outputs:
+- domain: stream
+  dtype: float
+  vlen: 1
+
+templates:
+  imports: |-
+    from gnuradio import mobrffi
+  make: |-
+    mobrffi.cfo_estimator(
+        vectorLength=${vectorLength},
+        sampleRate=${sampleRate},
+        lag=${lag},
+    )
+
+cpp_templates: { }
+
+documentation: Estimates carrier frequency offset (CFO) for a given OFDM frame preamble. Returns a CFO value in Hz.
+
+file_format: 1
